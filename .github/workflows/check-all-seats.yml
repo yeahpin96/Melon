@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
+    fail-fast: false 
       matrix:
         seat-id: [767,771,773,775,779,780,782,801,800,799,798,796,683,794,685,793,688,792,690,791,692,790,694,788,696,787,786,785,784,736,735,734,733,732,729,726,724,723,722,721,720,719,718,717,715,714,713,712,710]
     steps:
       - name: Check Tickets
         uses: mooyoul/melon-ticket-actions@v1.1.0
+        continue-on-error: true 
         with:
           product-id: 211541
           schedule-id: 100003
