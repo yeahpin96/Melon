@@ -1,77 +1,21 @@
-name: check-all-seats
+name: example
 on:
   schedule:
-    - cron: '*/5 * * * *'   # 每 1 分鐘
-  workflow_dispatch:         # 允許手動觸發
-
-concurrency:
-  group: check-melon-211541
-  cancel-in-progress: true
+    - cron: '*/5 * * * *'
 
 jobs:
-  check:
+  job:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
-      max-parallel: 10
       matrix:
-        schedule: [100001, 100002, 100003]   # 多場次在這裡展開
-        seat:
-          - 767
-          - 771
-          - 773
-          - 775
-          - 779
-          - 780
-          - 782
-          - 801
-          - 800
-          - 799
-          - 798
-          - 796
-          - 683
-          - 794
-          - 685
-          - 793
-          - 688
-          - 792
-          - 690
-          - 791
-          - 692
-          - 790
-          - 694
-          - 788
-          - 696
-          - 787
-          - 786
-          - 785
-          - 784
-          - 736
-          - 735
-          - 734
-          - 733
-          - 732
-          - 729
-          - 726
-          - 724
-          - 723
-          - 722
-          - 721
-          - 720
-          - 719
-          - 718
-          - 717
-          - 715
-          - 714
-          - 713
-          - 712
-          - 710
-
+        seat-id: [767,771,773,775,779,780,782,801,800,799,798,796,683,794,685,793,688,792,690,791,692,790,694,788,696,787,786,785,784,736,735,734,733,732,729,726,724,723,722,721,720,719,718,717,715,714,713,712,710]
     steps:
-      - name: Check Tickets (schedule ${{ matrix.schedule }} / seat ${{ matrix.seat }})
+      - name: Check Tickets
         uses: mooyoul/melon-ticket-actions@v1.1.0
         with:
           product-id: 211541
-          schedule-id: ${{ matrix.schedule }}      # ← 單一值，來自 matrix
-          seat-id: ${{ matrix.seat }}
+          schedule-id: 100003
+          seat-id: ${{ matrix.seat-id }}
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          message: "<@U12345678> 🎫 schedule ${{ matrix.schedule }} / seat ${{ matrix.seat }} 有票！"
+          message: '<@U4CF18RKL> 티켓사세요'
