@@ -12,7 +12,7 @@ inputs:
     description: 'Seat Id of Target Ticket'
     required: false
   block-id:
-    description: 'block-ids'
+    description: 'block-id'
     required: false
   slack-incoming-webhook-url:
     description: 'URL of Slack Incoming Webhook'
