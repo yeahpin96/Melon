@@ -15,7 +15,7 @@ jobs:
       max-parallel: 10
       matrix:
         schedule: [100001, 100002, 100003]   # 多場次在這裡展開
-        block:
+        seat:
           - 767
           - 771
           - 773
@@ -67,11 +67,11 @@ jobs:
           - 710
 
     steps:
-      - name: Check Tickets (schedule ${{ matrix.schedule }} / block ${{ matrix.block }})
+      - name: Check Tickets (schedule ${{ matrix.schedule }} / seat ${{ matrix.seat }})
         uses: mooyoul/melon-ticket-actions@v1.1.0
         with:
           product-id: 211541
           schedule-id: ${{ matrix.schedule }}      # ← 單一值，來自 matrix
-          block-id: ${{ matrix.block }}
+          seat-id: ${{ matrix.seat }}
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          message: "<@U12345678> 🎫 schedule ${{ matrix.schedule }} / block ${{ matrix.block }} 有票！"
+          message: "<@U12345678> 🎫 schedule ${{ matrix.schedule }} / seat ${{ matrix.seat }} 有票！"
