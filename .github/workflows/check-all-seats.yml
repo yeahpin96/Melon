@@ -1,7 +1,7 @@
 name: check-all-seats
 on:
   schedule:
-    - cron: '*/1 * * * *'   # 每 1 分鐘
+    - cron: '*/5 * * * *'   # 每 1 分鐘
   workflow_dispatch:         # 允許手動觸發
 
 concurrency:
