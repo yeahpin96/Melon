@@ -7,7 +7,7 @@ on:
 jobs:
   job:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 1
     strategy:
       fail-fast: false    # ← 和 matrix 對齊
       matrix:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check Tickets
         uses: mooyoul/melon-ticket-actions@v1.1.0
-        continue-on-error: true
+        continue-on-error: true 
         with:
           product-id: 211541
           schedule-id: 100003
